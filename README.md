@@ -2,10 +2,10 @@
 This repository contains a model for predicting the rental price of apartments in Lviv, Ukraine. The model is based on a dataset of apartment listings that was scraped from a popular real estate website using Selenium in Python.
 
 ## Files
-parse.py: Python script used for web scraping.
-preprocessing.ipynb: Jupyter notebook containing data cleaning and preprocessing steps.
-statistical_analysis.ipynb: Jupyter notebook containing exploratory data analysis and hypothesis testing.
-model.ipynb: Jupyter notebook containing the process of finding and evaluating regression models.
+- parse.py: Python script used for web scraping.
+- preprocessing.ipynb: Jupyter notebook containing data cleaning and preprocessing steps.
+- statistical_analysis.ipynb: Jupyter notebook containing exploratory data analysis and hypothesis testing.
+- model.ipynb: Jupyter notebook containing the process of finding and evaluating regression models.
 
 ## Data
 The dataset used for this model contains information on apartment listings in Lviv, including the number of rooms, the total area of the apartment, the location, and other features. The target variable is the rental price of each apartment.
