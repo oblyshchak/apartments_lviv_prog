@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Передбачення ціни оренди житла у місті Львів</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="content">
+        <div class="hcenter">
+            <h1>Передбачення ціни оренди житла у місті Львів</h1>
+        </div>
+
+        <div class="center">
+            <form id="rent-prediction-form">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="district">Район:</label>
+                        </td>
+                        <td>
+                            <select id="district" name="district">
+                                <option value=1>Личаківський</option>
+                                <option value=2>Галицький</option>
+                                <option value=3>Шевченківський</option>
+                                <option value=4>Сихівський</option>
+                                <option value=5>Франківський</option>
+                                <option value=6>Залізничний</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="status">Стан:</label>
+                        </td>
+                        <td>
+                            <select id="status" name="status">
+                                <option value=1>Задовільний</option>
+                                <option value=2>Відмінний</option>
+                                <option value=3>Люкс</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="balcony">Кількість балконів:</label>
+                        </td>
+                        <td>
+                            <input type="number" min="0" id="balcony" name="balcony">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="area_kitchen">Площа кухні (у кв. м.):</label>
+                        </td>
+                        <td>
+                            <input type="number" min="0" id="area_kitchen" name="area_kitchen">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="area">Загальна площа (у кв. м.):</label>
+                        </td>
+                        <td>
+                            <input type="number" min="0" id="area" name="area">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="floor">Поверх:</label>
+                        </td>
+                        <td>
+                            <input type="number" min="0" id="floor" name="floor">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="age">Вік будинку:</label>
+                        </td>
+                        <td>
+                            <select id="age" name="age">
+                                <option value=1>Будинок радянського зразка</option>
+                                <option value=2>Історичний будинок міста Лева</option>
+                                <option value=3>Новобудова</option>
+                            </select>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <input type="button" value="Отримати передбачення" onclick="sendForm()">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="result"></div>
+                        </td>
+
+                    </tr>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function sendForm() {
+            // Get form values
+            const district = parseInt(document.getElementById("district").value);
+            const status = parseInt(document.getElementById("status").value);
+            const balcony = parseInt(document.getElementById("balcony").value);
+            const area_kitchen = parseInt(document.getElementById("area_kitchen").value);
+            const area = parseInt(document.getElementById("area").value);
+            const floor = parseInt(document.getElementById("floor").value);
+            const age = parseInt(document.getElementById("age").value);
+
+            // Send form data to server using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    const response = JSON.parse(this.responseText);
+                    document.getElementById("result").innerHTML = "<b>Передбачувана ціна: " + response.price + "</b>";
+                }
+            };
+            xhr.open("POST", "/predict", true);
+            xhr.setRequestHeader("Content-type", "application/json");
+            const data = JSON.stringify({
+                district: district,
+                status: status,
+                balcony: balcony,
+                area_kitchen: area_kitchen,
+                area: area,
+                floor: floor,
+                age: age
+            });
+            xhr
+            xhr.send(data);
+        }
+    </script>
+</body>
+
+</html>
