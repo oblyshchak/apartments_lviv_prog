@@ -46,5 +46,12 @@ The statistical_analysis.ipynb notebook contains the exploratory data analysis (
 ## Model
 The model.ipynb notebook contains the code used to train and evaluate various machine learning models for predicting the rental price of apartments in Lviv. The models used include linear regression, decision trees, random forests, support vector regression, XGBoost, and a neural network built with Keras.
 
+## Deployed model
+
+The ```web/``` folder in this repository contains implementation of a simple web application that predicts price using Ensemble Stacking Model.
+
+Screenshot:
+![Screenshot](assets/screenshot.png)
+
 ## Conclusion
 Overall, this project aimed to build a model that can accurately predict the rental price of apartments in Lviv based on various features. The resulting model can be used by real estate agents, property management companies, and individuals looking to rent or invest in rental properties in Lviv.
